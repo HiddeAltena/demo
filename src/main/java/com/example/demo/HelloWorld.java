@@ -23,16 +23,20 @@ public class HelloWorld {
 
 
     }
+    @GetMapping(path = "greeting_with_param")
+    public @ResponseBody
+    String greetingWithParm(@RequestParam("data") String value) {
+        return "Hello, you send me a query param data with value: " + value;
+    }
+
+    @PostMapping(path = "greeting/{name}")
+    public @ResponseBody
+    String postText(@PathVariable("name") String name, @RequestBody String text) {
+
+        String retVal = "Hello " + name + "\n";
+        retVal += "You posted " + text + "\n";
+        return retVal;
+    }
 }
 
 
-/*
-@PostMapping(path = "greeting/{name}") {
-public @ResponseBody String postText (@PathVariable("name") String name,
-@RequestBody String text){
-        String retVal = "Hello" + name + "\n";
-        retVal += "you posted: " + text + "\n";
-        return retVal
-
-        }
-        }*/
